@@ -96,7 +96,12 @@ int evaluerExpression(const string& expression) {
 
 void demanderExpression(string& expression) {
     cout << "Entrez une expression mathematique : ";
-    getline(cin, expression);
+    try {
+        getline(cin, expression);
+    } catch (const ios_base::failure& e) {
+        cerr << "Erreur lors de la lecture de l'expression : " << e.what() << endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 void affichage(const string& expression, bool verif, int resultat) {
