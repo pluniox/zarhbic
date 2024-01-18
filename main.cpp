@@ -113,13 +113,19 @@ void affichage(const string& expression, bool verif, int resultat) {
 }
 
 int main() {
-  string expression;
-  bool verification;
-  int resultat;
-  demanderExpression(expression);
-  verification = verifierExpression(expression);
-  resultat =  evaluerExpression(expression);
-  affichage(expression, verification, resultat);
+    string expression;
+    bool verification;
+    int resultat;
 
-  return 0;
+    try {
+        demanderExpression(expression);
+        verification = verifierExpression(expression);
+        resultat = evaluerExpression(expression);
+        affichage(expression, verification, resultat);
+    } catch (const exception& e) {
+        cerr << "Erreur : " << e.what() << endl;
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
 }
